@@ -1,23 +1,23 @@
--- View that calculates stats for each caught pokemon based on their base stats and IVs
--- Reason: If players want to quickly check what statistics their caught Pokémon have it’s crucial to have a view that calculates those and lets them quickly see what random statistics their caught Pokémon possess
+-- Calculates battle stats for each trainer-owned Pokémon.
+-- The view combines species base stats, individual values, and level into readable HP, Attack, and Defense values.
 CREATE VIEW TrainerPokemonStats AS
 SELECT tp.caught_id, tp.trainer_id, tp.nick_name AS Name, p.name AS Species, tp.pokemon_level as Level,
 
--- Calculated HP
+-- Calculates HP from base HP, HP IV, and Pokémon level.
 FLOOR(
     (
         (p.base_hp + tp.hit_points_iv) * 2 * tp.pokemon_level
     ) / 100
 ) + tp.pokemon_level + 10 AS HP,
 
--- Calculated Attack
+-- Calculates Attack from base attack, attack IV, and Pokémon level.
 FLOOR(
     (
         (p.base_attack + tp.attack_iv) * 2 * tp.pokemon_level
     ) / 100
 ) + 5 AS Attack,
 
--- Calculated Defense
+-- Calculates Defense from base defense, defense IV, and Pokémon level.
 FLOOR(
     (
         (
@@ -28,8 +28,9 @@ FLOOR(
 FROM TrainerPokemon tp
     JOIN Pokemon p ON tp.pokemon_id = p.pokemon_id;
 
--- View: Displays each Pokemon with all of its types combined into one line
--- Reason: To simplify data analysis by displaying each Pokémon and all of its types on a single line instead of multiple rows.
+
+-- Lists each Pokémon with all assigned types combined into a single row.
+-- This makes type reporting easier than reading one row per Pokemon-type relationship.
 CREATE VIEW PokemonWithTypes AS
 SELECT p.pokemon_id, p.name, GROUP_CONCAT(
         t.type_name
@@ -43,8 +44,9 @@ GROUP BY
     p.pokemon_id,
     p.name;
 
--- View: Displays trainer details with total pokemon, if there a gym leader and there location
--- Reason: Table view to see all the details of a trainer
+
+-- Summarizes trainer details, team size, home location, and gym leader information.
+-- LEFT JOINs keep trainers visible even when they do not own Pokémon or lead a gym.
 CREATE VIEW TrainerSummary AS
 SELECT
     tr.trainer_id,
@@ -79,8 +81,9 @@ GROUP BY
     gt.name,
     ty.type_name;
 
---Shows each trainer's highest level pokemon
---Reason: Allows quick access to see which pokemon is the strongest in each trainer's collection
+
+-- Shows the highest-level Pokémon owned by each trainer.
+-- The correlated subquery compares each owned Pokémon against the trainer's maximum recorded level.
 CREATE VIEW TrainerPokemonMaxLevelView AS
 SELECT
     t.trainer_id,
