@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Move example SQL queries into examples folder">
-      <change beforePath="$PROJECT_DIR$/sql/examples/data_modification_queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/examples/data_modification_queries.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/examples/reporting_queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/examples/reporting_queries.sql" afterDir="false" />
-    </list>
+    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Add main SQL setup script" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +88,9 @@
     <MESSAGE value="Improve index SQL comments" />
     <MESSAGE value="Add user management SQL comments" />
     <MESSAGE value="Move example SQL queries into examples folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move example SQL queries into examples folder" />
+    <MESSAGE value="Improve example SQL comments" />
+    <MESSAGE value="Reformat code" />
+    <MESSAGE value="Add main SQL setup script" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add main SQL setup script" />
   </component>
 </project>

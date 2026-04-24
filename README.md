@@ -1,37 +1,22 @@
-# Pokemon Database System
+# Pokémon Database System
 
-A MySQL and Java JDBC database system for managing Pokemon, trainers, regions, gyms, wild encounters, and trainer-owned Pokemon.
+A MySQL and Java JDBC database system for managing Pokémon, trainers, regions, gyms, wild encounters, and trainer-owned Pokémon.
 
-The system combines a normalized relational database with database-side business logic and a Java console application for querying operational data.
+The system combines a normalized relational database, database-side business logic, example operational queries, and a Java console application for querying data through JDBC.
 
-## What This Project Includes
+## Features
 
-- A normalized MySQL schema for Pokemon, trainers, regions, towns, types, gyms, badges, wild encounters, and trainer-owned Pokemon.
-- Many-to-many relationships, including Pokemon-to-type mapping through a junction table.
-- Foreign key constraints across the schema to keep relational data consistent.
-- Seed data for regions, towns, Pokemon, Pokemon types, trainers, gyms, badges, wild Pokemon, and ownership records.
-- SQL views for reusable reporting, including calculated trainer Pokemon stats.
-- Stored procedures for adding Pokemon, adding trainers with starter Pokemon, trading Pokemon, and buying wild Pokemon.
-- Triggers for business rules such as level limits, IV caps, trainer party limits, delete handling, and audit logging.
-- Indexes with `EXPLAIN` examples for query-performance reasoning.
-- MySQL user and privilege scripts showing role-based access control.
-- A Java console application that connects to MySQL with JDBC and displays formatted query results.
-
-## Technical Highlights
-
-The implementation includes:
-
-- Relational database design and normalization
-- Primary keys, composite keys, foreign keys, and junction tables
-- Complex SQL joins and aggregation
-- Views for reusable reporting queries
-- Stored procedures and transaction control
-- Trigger-based data validation and business rules
-- Index creation and basic query-plan analysis
-- Database users, grants, revokes, and privilege separation
-- Java JDBC connection handling
-- Prepared statements and result-set formatting
-- Console application structure with menu-driven user interaction
+- Normalized MySQL schema for regions, towns, trainers, Pokémon species, types, gyms, badges, wild encounters, and owned Pokémon.
+- Many-to-many Pokémon type mapping through a junction table.
+- Foreign key constraints for relational integrity.
+- Seed data for the main game-domain entities.
+- SQL views for reusable reporting and calculated Pokémon stats.
+- Stored procedures for adding Pokémon and trainers with starter Pokémon.
+- Transaction-based procedures for trading Pokémon and moving wild Pokémon into trainer ownership.
+- Triggers for level limits, IV caps, trainer party limits, delete handling, leader reassignment, and audit logging.
+- Indexes with `EXPLAIN` examples for query-plan review.
+- MySQL user and privilege scripts for role-based access control.
+- Java console application with formatted query output.
 
 ## Tech Stack
 
@@ -45,49 +30,72 @@ The implementation includes:
 
 ```text
 Pokemon_Database/
-├── DBConnectJava/              # Main Java source files
-├── Java_compile_and_run/       # Runnable Java copy with MySQL Connector/J jar
-│   ├── lib/
-│   └── src/
-├── sql/
-│   ├── tables.sql              # Database and table creation
-│   ├── inserts.sql             # Seed data
-│   ├── join_queries.sql        # Example joins
-│   ├── views.sql               # Reporting views
-│   ├── stored_procedures.sql   # Stored procedures
-│   ├── transactions.sql        # Transaction-based procedures
-│   ├── triggers.sql            # Business-rule triggers
-│   ├── indexes.sql             # Indexes and EXPLAIN examples
-│   ├── users.sql               # MySQL users and privileges
-│   └── AllSQL                  # Combined SQL script
-└── README.md
+├── README.md
+├── lib/
+│   └── mysql-connector-j-9.4.0.jar
+├── src/
+│   └── main/
+│       └── java/
+│           ├── DBCommand.java
+│           ├── DBConnect.java
+│           ├── DBOutputFormatter.java
+│           └── Main.java
+└── sql/
+    ├── 00_all.sql
+    ├── 01_schema.sql
+    ├── 02_seed_data.sql
+    ├── 03_views.sql
+    ├── 04_stored_procedures.sql
+    ├── 05_transactions.sql
+    ├── 06_triggers.sql
+    ├── 07_indexes.sql
+    ├── 08_users.sql
+    └── examples/
+        ├── data_modification_queries.sql
+        └── reporting_queries.sql
 ```
 
 ## Database Model
 
-The database is built around a Pokemon game domain:
+The database is built around a Pokémon game domain:
 
 - `Region` stores world regions.
 - `Town` belongs to a region.
 - `Trainer` belongs to a home town.
-- `Pokemon` stores base species statistics.
-- `Types` stores Pokemon type names.
-- `PokemonTypes` maps Pokemon to one or more types.
-- `TrainerPokemon` stores Pokemon owned by trainers, including nickname, level, and IV values.
-- `WildPokemon` stores catchable Pokemon by region and level range.
+- `Pokemon` stores shared Pokémon species data and base stats.
+- `Types` stores Pokémon type names.
+- `PokemonTypes` maps Pokémon species to one or more types.
+- `TrainerPokemon` stores trainer-owned Pokémon, including nickname, level, and IV values.
+- `WildPokemon` stores catchable Pokémon by region and level range.
 - `Gym`, `Badge`, and `TypeAdvantage` model gym and battle-related data.
+- `DeletedTrainers` stores trainer deletion audit records.
 
-This structure separates core entities from relationships, avoids duplicated type data, and keeps ownership and wild-encounter records distinct.
+## SQL Scripts
+
+`sql/00_all.sql` is the main setup script for MySQL CLI usage. It runs the numbered setup files in order:
+
+```text
+01_schema.sql
+02_seed_data.sql
+03_views.sql
+04_stored_procedures.sql
+05_transactions.sql
+06_triggers.sql
+07_indexes.sql
+08_users.sql
+```
+
+The `sql/examples/` folder contains optional demonstration queries. These files are not included in `00_all.sql` because `data_modification_queries.sql` changes and deletes data.
 
 ## Java Console Application
 
-The Java application provides a simple menu for exploring the database:
+The Java application provides a menu for exploring the database:
 
-1. Show Pokemon by type
-2. Show trainers and their Pokemon
-3. Show wild Pokemon by region
+1. Show Pokémon by type
+2. Show trainers and their Pokémon
+3. Show wild Pokémon by region
 4. Show gyms and their leaders
-5. Show calculated Pokemon stats from the `TrainerPokemonStats` view
+5. Show calculated Pokémon stats from the `TrainerPokemonStats` view
 
 The application uses:
 
@@ -96,73 +104,24 @@ The application uses:
 - `DBOutputFormatter` for table-like console output
 - `Main` for menu navigation and user input
 
-## SQL Features
-
-### Views
-
-The project includes views such as:
-
-- `TrainerPokemonStats`: calculates HP, attack, and defense from base stats, IVs, and level.
-- `PokemonWithTypes`: combines each Pokemon's types into one readable row.
-- `TrainerSummary`: summarizes trainer details, Pokemon count, region, and gym-leader status.
-- `TrainerPokemonMaxLevelView`: shows each trainer's highest-level Pokemon.
-
-### Stored Procedures and Transactions
-
-The SQL scripts include procedures for:
-
-- Adding a Pokemon with type and wild-location data
-- Adding a trainer with a starter Pokemon
-- Trading Pokemon between trainers with rollback on failure
-- Buying/catching a wild Pokemon and moving it into trainer ownership
-
-Transaction examples use `START TRANSACTION`, `COMMIT`, `ROLLBACK`, and error handlers to protect multi-step operations.
-
-### Triggers
-
-Triggers enforce rules directly in the database, including:
-
-- Capping Pokemon levels between 1 and 100
-- Capping IV values at 31
-- Limiting a trainer to a maximum of 6 Pokemon
-- Removing related trainer Pokemon before trainer deletion
-- Reassigning gym leaders before deleting a trainer
-- Logging deleted trainers
-
-### Indexes and Users
-
-The project includes indexes for frequently joined or filtered fields, such as wild Pokemon region lookups and Pokemon type mappings. It also includes MySQL user-management examples for application, read-only, admin, and trainer-style users.
-
 ## How to Run
 
 ### 1. Create the database
 
-Open MySQL and run the combined SQL script:
+Open the MySQL CLI and run the main setup script with an absolute path:
 
 ```sql
-SOURCE /absolute/path/to/Pokemon_Database/sql/AllSQL;
+SOURCE /Users/nikitsya/Desktop/Pokemon_Database/sql/00_all.sql;
 ```
 
-Alternatively, run the individual scripts in this general order:
-
-```text
-tables.sql
-inserts.sql
-table_for_trigger.sql
-views.sql
-stored_procedures.sql
-transactions.sql
-triggers.sql
-indexes.sql
-users.sql
-```
+`SOURCE` is a MySQL client command, so it is intended for the MySQL CLI. In database IDEs, run the numbered SQL files manually in order.
 
 ### 2. Configure the Java database connection
 
 Update the connection settings in:
 
 ```text
-Java_compile_and_run/src/DBConnect.java
+src/main/java/DBConnect.java
 ```
 
 Set the MySQL database URL, username, and password for your local environment:
@@ -175,25 +134,25 @@ private static final String PASSWORD = "your_password";
 
 ### 3. Compile and run on macOS or Linux
 
-From the `Java_compile_and_run` directory:
+From the project root:
 
 ```bash
-javac -cp "lib/mysql-connector-j-9.4.0.jar" src/*.java -d out
+javac -cp "lib/mysql-connector-j-9.4.0.jar" src/main/java/*.java -d out
 java -cp "out:lib/mysql-connector-j-9.4.0.jar" Main
 ```
 
 ### 4. Compile and run on Windows
 
-From the `Java_compile_and_run` directory:
+From the project root:
 
 ```bash
-javac -cp "lib/mysql-connector-j-9.4.0.jar" src\*.java -d out
+javac -cp "lib/mysql-connector-j-9.4.0.jar" src\main\java\*.java -d out
 java -cp "out;lib/mysql-connector-j-9.4.0.jar" Main
 ```
 
 ## Example Queries
 
-Show trainers and their Pokemon:
+Show trainers and their Pokémon:
 
 ```sql
 SELECT
@@ -209,13 +168,13 @@ JOIN Pokemon AS p ON tp.pokemon_id = p.pokemon_id
 ORDER BY tr.name;
 ```
 
-Show calculated trainer Pokemon stats:
+Show calculated trainer Pokémon stats:
 
 ```sql
 SELECT * FROM TrainerPokemonStats;
 ```
 
-Trade Pokemon between trainers:
+Trade Pokémon between trainers:
 
 ```sql
 CALL TradePokemon(1, 1, 8, 4);
@@ -223,4 +182,4 @@ CALL TradePokemon(1, 1, 8, 4);
 
 ## Project Status
 
-The database schema, SQL logic, seed data, and Java query application are implemented and ready to run locally with MySQL.
+The database schema, SQL setup scripts, seed data, database logic, example queries, and Java query application are implemented and ready to run locally with MySQL.
