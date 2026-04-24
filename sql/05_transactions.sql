@@ -1,11 +1,11 @@
--- A stored procedures used to trade pokemon which has a transaction that rollsback if an error occurs and commits otherwise
--- Can be tested running:
+-- Trades two owned Pokémon between trainers inside a single transaction.
+-- The procedure commits only when both ownership updates succeed; otherwise, it rolls back.
+-- Test example:
 -- CALL TradePokemon(1, 1, 8, 4); 
--- twice
 
 DELIMITER $$
 
-  -- Create procedure to trade pokemon 
+  -- Creates the Pokémon trade procedure.
 CREATE PROCEDURE TradePokemon(
     IN p1_id INT,
     IN t1_id INT,
@@ -13,11 +13,11 @@ CREATE PROCEDURE TradePokemon(
     IN t2_id INT
 )
 BEGIN
-  -- declare variables to check how many rows get effected
+  -- Track how many ownership rows are updated for each side of the trade.
     DECLARE rows1 INT DEFAULT 0;
     DECLARE rows2 INT DEFAULT 0;
 
--- check if sqlexception occurs
+-- Roll back the transaction if any SQL error occurs.
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
@@ -26,19 +26,19 @@ BEGIN
 
     START TRANSACTION;
 
-    -- Transfer Pokemon 1 to trainer 2 and set amount of rows affected
+    -- Transfer the first Pokémon to the second trainer and record the affected row count.
     UPDATE TrainerPokemon
     SET trainer_id = t2_id
     WHERE caught_id = p1_id AND trainer_id = t1_id;
     SET rows1 = ROW_COUNT();
 
-    --  Transfer Pokemon 2 to trainer 1 and set amount of rows affected
+    -- Transfer the second Pokémon to the first trainer and record the affected row count.
     UPDATE TrainerPokemon
     SET trainer_id = t1_id
     WHERE caught_id = p2_id AND trainer_id = t2_id;
     SET rows2 = ROW_COUNT();
 
-    -- Check if both updates affected exactly 1 row and commit else rollback
+    -- Commit only if both Pokémon were transferred successfully.
     IF rows1 = 1 AND rows2 = 1 THEN
         COMMIT;
         SELECT 'Trade successful' AS status;
@@ -52,16 +52,16 @@ DELIMITER ;
 
 
 
--- A stored procedure used to simulate buying a wild pokemon by a trainer
--- Rolls back if any insert/update fails
+-- Moves a wild Pokémon into a trainer's owned Pokémon records inside a transaction.
+-- The procedure rolls back if the lookup, insert, or delete step fails.
 -- Example test:
 -- CALL BuyPokemon(1, 1, 5, 25, 12, 10, 10, 10);
 
 DELIMITER $$
 
 CREATE PROCEDURE BuyPokemon(
-    IN wild_pokemon_id INT,  -- ID in WildPokemon
-    IN trainer_id INT,       -- trainer who buys
+    IN wild_pokemon_id INT,  -- WildPokemon row to transfer
+    IN trainer_id INT,       -- Trainer receiving the Pokémon
     IN pokemon_level INT,
     IN hit_iv INT,
     IN atk_iv INT,
@@ -78,18 +78,18 @@ BEGIN
 
     START TRANSACTION;
 
-    -- Get pokemon ID and name from WildPokemon
+    -- Get the Pokémon species ID and name from the selected wild encounter.
     SELECT wp.pokemon_id, p.name
     INTO pkmn_id, pkmn_name
     FROM WildPokemon AS wp
     JOIN Pokemon AS p ON wp.pokemon_id = p.pokemon_id
     WHERE wp.wild_id = wild_pokemon_id;
 
-    -- Insert into TrainerPokemon table (trainer now owns it)
+    -- Insert the Pokémon into TrainerPokemon so the trainer owns it.
     INSERT INTO TrainerPokemon(trainer_id, pokemon_id, nick_name, pokemon_level, hit_points_iv, attack_iv, defense_iv)
     VALUES (trainer_id, pkmn_id, pkmn_name, pokemon_level, hit_iv, atk_iv, def_iv);
 
-    -- Remove from WildPokemon (caught)
+    -- Remove the wild encounter after ownership is created.
     DELETE FROM WildPokemon WHERE wild_id = wild_pokemon_id;
 
     COMMIT;
