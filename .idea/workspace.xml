@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Improve README for portfolio presentation">
+      <change beforePath="$PROJECT_DIR$/50%ofspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CA1Milestone2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBConnect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBOutputFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBConnectJava/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Description/ER Diagrams.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Description/Gannt Chart.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Description/Project Description.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/HowToRun.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/lib/mysql-connector-j-9.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBConnect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBOutputFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Milestone_1.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Milestone_2.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Milestone_3.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pokemon.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pokemon_CA1_Process_Documentation.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/AllSQL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/Trigger.docx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nikitsya&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nikitsya/Pokemon_Database.git&quot;,
+    &quot;accountId&quot;: &quot;b263a0fb-f813-4c12-91a1-d9175f048b2a&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3Cot39K4ppE7YPdGx7GAqPdagpW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nikitsya/Desktop/Pokemon_Database&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/archive" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="" />
+      <created>1777063551108</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777063551108</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Improve README for portfolio presentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve README for portfolio presentation" />
+  </component>
+</project>
