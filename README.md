@@ -3,12 +3,12 @@
 A MySQL and Java JDBC database system for managing Pokémon, trainers, regions, gyms, wild encounters, and trainer-owned
 Pokémon.
 
-The system combines a normalized relational database, database-side business logic, example operational queries, and a
+The system combines a normalised relational database, database-side business logic, example operational queries, and a
 Java console application for querying data through JDBC.
 
 ## Features
 
-- Normalized MySQL schema for regions, towns, trainers, Pokémon species, types, gyms, badges, wild encounters, and owned
+- Normalised MySQL schema for regions, towns, trainers, Pokémon species, types, gyms, badges, wild encounters, and owned
   Pokémon.
 - Many-to-many Pokémon type mapping through a junction table.
 - Foreign key constraints for relational integrity.
@@ -75,7 +75,7 @@ The database is built around a Pokémon game domain:
 
 ## SQL Scripts
 
-`sql/00_all.sql` is the main setup script for MySQL CLI usage. It runs the numbered setup files in order:
+`sql/00_all.sql` is the main set-up script for MySQL CLI usage. It runs the numbered set-up files in order:
 
 ```text
 01_schema.sql
@@ -112,7 +112,7 @@ The application uses:
 
 ### 1. Create the database
 
-Open the MySQL CLI and run the main setup script with an absolute path:
+Open the MySQL CLI and run the main set-up script with an absolute path:
 
 ```sql
 SOURCE
@@ -188,5 +188,5 @@ CALL TradePokemon(1, 1, 8, 4);
 
 ## Project Status
 
-The database schema, SQL setup scripts, seed data, database logic, example queries, and Java query application are
+The database schema, SQL set-up scripts, seed data, database logic, example queries, and Java query application are
 implemented and ready to run locally with MySQL.

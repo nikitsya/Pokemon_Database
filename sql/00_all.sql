@@ -1,4 +1,4 @@
--- Main setup script for the Pokémon database.
+-- Main set-up script for the Pokémon database.
 -- Run this file from the MySQL CLI to create the schema, seed data, views,
 -- stored procedures, transactions, triggers, indexes, and users.
 -- Example query files are not included because they are intended to be run manually.

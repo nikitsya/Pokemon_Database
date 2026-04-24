@@ -73,7 +73,7 @@ END $$
 DELIMITER;
 
 
--- Normalizes inserted Pokémon levels to the valid gameplay range of 1 to 100.
+-- Normalises inserted Pokémon levels to the valid gameplay range of 1 to 100.
 -- Values below 1 are raised to 1, and values above 100 are capped at 100.
 DELIMITER
 $$

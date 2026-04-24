@@ -48,7 +48,7 @@ GRANTS FOR 'pokemon_readonly'@'localhost';
 SHOW
 GRANTS FOR 'trainer_user'@'localhost';
 
--- Allow trainer_user to update owned Pokémon records after initial account setup.
+-- Allow trainer_user to update owned Pokémon records after initial account set-up.
 GRANT
 UPDATE ON Pokemon.TrainerPokemon TO 'trainer_user'@'localhost';
 FLUSH
@@ -126,13 +126,13 @@ SELECT user,
 FROM mysql.user
 WHERE user IN ('pokemon_app', 'pokemon_readonly', 'pokemon_trainer');
 
--- Inspect table-level privileges assigned inside the Pokemon database.
+-- Inspect table-level privileges assigned inside the Pokémon database.
 SELECT *
 FROM mysql.tables_priv
 WHERE Db = 'Pokemon';
 
 
--- Cleanup commands for resetting the database users during local setup.
+-- Clean-up commands for resetting the database users during local set-up.
 DROP
 USER IF EXISTS 'pokemon_app'@'localhost';
 DROP
@@ -146,6 +146,6 @@ USER IF EXISTS 'pokemon_trainer'@'localhost';
 DROP
 USER IF EXISTS 'trainer_user'@'localhost';
 
--- Verify remaining MySQL users after cleanup.
+-- Verify remaining MySQL users after clean-up.
 SELECT user, host
 FROM mysql.user;

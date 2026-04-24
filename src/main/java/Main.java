@@ -9,7 +9,7 @@ public class Main {
     }
 
     /**
-     * Displays the main menu for Pokemon database queries.
+     * Displays the main menu for Pokémon database queries.
      */
     public static void mainMenu() {
         int choice;
@@ -18,13 +18,13 @@ public class Main {
             System.out.println("""
                 
                 ---------------------------------------------------
-                Pokemon Database Query Menu
+                Pokémon Database Query Menu
                 ---------------------------------------------------
-                1. Show Pokemon by type
-                2. Show trainers and their Pokemon
-                3. Show wild Pokemon by region
+                1. Show Pokémon by type
+                2. Show trainers and their Pokémon
+                3. Show wild Pokémon by region
                 4. Show gyms and their leaders
-                5. Show Pokemon stats view
+                5. Show Pokémon stats view
                 0. Exit
                 """);
             System.out.print("Enter your choice: ");
@@ -52,13 +52,13 @@ public class Main {
     }
 
     /**
-     * Displays Pokemon filtered by type.
+     * Displays Pokémon filtered by type.
      */
     private static void showPokemonByType() {
         System.out.println("""
             
             ---------------------------------------------------
-            Choose Pokemon Type:
+            Choose Pokémon Type:
             ---------------------------------------------------
             1. Fire
             2. Water
@@ -86,7 +86,7 @@ public class Main {
             case 5 -> query += " HAVING Types LIKE '%Normal%';";
             case 6 -> query += ";";
             default -> {
-                System.out.println("Invalid type, defaulting to all Pokemon.\n");
+                System.out.println("Invalid type, defaulting to all Pokémon.\n");
                 query += ";";
             }
         }
@@ -95,7 +95,7 @@ public class Main {
     }
 
     /**
-     * Shows trainers and Pokemon they own.
+     * Shows trainers and Pokémon they own.
      */
     private static void showTrainersAndPokemon() {
         String query = """
@@ -110,7 +110,7 @@ public class Main {
     }
 
     /**
-     * Shows wild Pokemon found in regions.
+     * Shows wild Pokémon found in regions.
      */
     private static void showWildPokemonByRegion() {
         System.out.println("""

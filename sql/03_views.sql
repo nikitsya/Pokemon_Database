@@ -34,7 +34,7 @@ FROM TrainerPokemon tp
 
 
 -- Lists each Pokémon with all assigned types combined into a single row.
--- This makes type reporting easier than reading one row per Pokemon-type relationship.
+-- This makes type reporting easier than reading one row per Pokémon-type relationship.
 CREATE VIEW PokemonWithTypes AS
 SELECT p.pokemon_id,
        p.name,
