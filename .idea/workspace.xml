@@ -4,29 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Improve README for portfolio presentation">
-      <change beforePath="$PROJECT_DIR$/50%ofspec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA1Milestone2.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBConnect.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBConnectJava/DBOutputFormatter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBConnectJava/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Description/ER Diagrams.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Description/Gannt Chart.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Description/Project Description.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/HowToRun.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/lib/mysql-connector-j-9.4.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBConnect.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/DBOutputFormatter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_compile_and_run/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Milestone_1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Milestone_2.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Milestone_3.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pokemon.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pokemon_CA1_Process_Documentation.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/AllSQL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/Trigger.docx" beforeDir="false" />
+    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Improve index SQL comments">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/all.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/table_for_trigger.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/08_users.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +83,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Improve README for portfolio presentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve README for portfolio presentation" />
+    <MESSAGE value="Improve trigger SQL comments" />
+    <MESSAGE value="Add schema SQL comments" />
+    <MESSAGE value="Rename seed data SQL file" />
+    <MESSAGE value="Improve view SQL comments" />
+    <MESSAGE value="Update stored procedure Pokémon wording" />
+    <MESSAGE value="Improve transaction SQL comments" />
+    <MESSAGE value="Improve index SQL comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve index SQL comments" />
   </component>
 </project>
