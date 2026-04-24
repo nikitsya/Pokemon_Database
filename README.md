@@ -73,6 +73,117 @@ The database is built around a Pokémon game domain:
 - `Gym`, `Badge`, and `TypeAdvantage` model gym and battle-related data.
 - `DeletedTrainers` stores trainer deletion audit records.
 
+## Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    Region ||--o{ Town : contains
+    Town ||--o{ Trainer : is_home_to
+    Town ||--o{ Gym : hosts
+
+    Trainer ||--o{ TrainerPokemon : owns
+    Pokemon ||--o{ TrainerPokemon : is_owned_as
+
+    Pokemon ||--o{ PokemonTypes : has
+    Types ||--o{ PokemonTypes : classifies
+
+    Trainer ||--o{ Gym : leads
+    Types ||--o{ Gym : specialises
+    Badge ||--o{ Gym : awards
+
+    Types ||--o{ TypeAdvantage : attacker
+    Types ||--o{ TypeAdvantage : defender
+
+    Region ||--o{ WildPokemon : contains
+    Pokemon ||--o{ WildPokemon : appears_as
+
+    Region {
+        INT region_id PK
+        VARCHAR name
+        VARCHAR climate
+    }
+
+    Town {
+        INT town_id PK
+        INT region_id FK
+        VARCHAR name
+        INT population
+    }
+
+    Types {
+        INT type_id PK
+        VARCHAR type_name
+    }
+
+    Trainer {
+        INT trainer_id PK
+        INT home_town_id FK
+        VARCHAR name
+        VARCHAR gender
+        INT age
+    }
+
+    Pokemon {
+        INT pokemon_id PK
+        VARCHAR name
+        INT base_hp
+        INT base_attack
+        INT base_defense
+    }
+
+    PokemonTypes {
+        INT pokemon_id PK, FK
+        INT type_id PK, FK
+    }
+
+    TrainerPokemon {
+        INT caught_id PK
+        INT trainer_id FK
+        INT pokemon_id FK
+        VARCHAR nick_name
+        INT pokemon_level
+        INT hit_points_iv
+        INT attack_iv
+        INT defense_iv
+    }
+
+    Badge {
+        INT badge_id PK
+        VARCHAR badge_name
+    }
+
+    Gym {
+        INT gym_id PK
+        INT leader_id FK
+        INT town_id FK
+        INT type_id FK
+        INT badge_id FK
+    }
+
+    TypeAdvantage {
+        INT type_1 PK, FK
+        INT type_2 PK, FK
+        VARCHAR type_advantage
+    }
+
+    WildPokemon {
+        INT wild_id PK
+        INT pokemon_id FK
+        INT region_id FK
+        VARCHAR location_description
+        INT min_level
+        INT max_level
+    }
+
+    DeletedTrainers {
+        INT LogID PK
+        INT TrainerID
+        VARCHAR Name
+        VARCHAR Action
+        TIMESTAMP DeletedAt
+    }
+```
+
 ## SQL Scripts
 
 `sql/00_all.sql` is the main set-up script for MySQL CLI usage. It runs the numbered set-up files in order:
