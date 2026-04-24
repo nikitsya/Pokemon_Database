@@ -1,22 +1,23 @@
--- Because of constraints Delete statements can only be run properly with triggers present
+-- Data modification examples for the Pokemon database.
+-- Delete examples depend on the trigger setup because related tables use foreign key constraints.
 
--- Update pokemon level by 1 for each pokemon with trainer_id = 4
+-- Increases the level of every Pokémon owned by trainer 4 by one.
 UPDATE TrainerPokemon AS tp
 SET
     tp.pokemon_level = tp.pokemon_level + 1
 WHERE
     tp.trainer_id = 4;
 
--- Delete all of trainer 6's pokemon
+-- Deletes all owned Pokémon records for trainer 6.
 DELETE FROM TrainerPokemon WHERE trainer_id = 6;
 
--- Update a pokemons base hp
+-- Updates the base HP value for a specific Pokémon species.
 UPDATE Pokemon SET base_hp = 46 where pokemon_id = 1;
 
---Updates a Trainer's age
+-- Updates a trainer's age by trainer name.
 UPDATE Trainer SET age = 55 WHERE name = 'Brock';
 
---Delete a Town's Gym
+-- Deletes the gym located in Pewter City.
 DELETE FROM Gym
 WHERE
     town_id = (

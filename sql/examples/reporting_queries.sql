@@ -1,4 +1,5 @@
--- Select all pokemon, and their types
+-- Lists Pokémon that have the Normal type.
+-- Demonstrates joining the species table through the Pokémon-type junction table.
 SELECT p.name, t.type_name
 FROM
     Pokemon AS p
@@ -7,7 +8,8 @@ FROM
 WHERE
     t.type_name = 'Normal';
 
--- Show trainers and the Pokémon they own
+-- Lists trainers with their owned Pokémon, nicknames, and current levels.
+-- Demonstrates a standard ownership query across Trainer, TrainerPokemon, and Pokemon.
 SELECT
     tr.name AS Trainer,
     tr.gender,
@@ -21,7 +23,8 @@ FROM
     JOIN Pokemon AS p ON tp.pokemon_id = p.pokemon_id
 ORDER BY tr.name;
 
--- Show all gym leaders and their pokemon
+-- Lists each gym leader with the Pokémon they currently own.
+-- Demonstrates joining trainer ownership data with gym leadership records.
 SELECT
     tr.name AS Trainer,
     g.gym_id AS Gym,
@@ -34,7 +37,8 @@ FROM
     JOIN Pokemon AS p on tp.pokemon_id = p.pokemon_id
 order by g.gym_id, tr.name;
 
--- Show trainers along with their hometown and region
+-- Lists trainers with their home town and region.
+-- LEFT JOINs keep towns visible even if no trainer is assigned to them.
 SELECT
     tr.name AS Trainer,
     tr.gender AS Gender,
