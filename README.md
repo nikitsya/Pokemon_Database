@@ -1,12 +1,15 @@
 # Pokémon Database System
 
-A MySQL and Java JDBC database system for managing Pokémon, trainers, regions, gyms, wild encounters, and trainer-owned Pokémon.
+A MySQL and Java JDBC database system for managing Pokémon, trainers, regions, gyms, wild encounters, and trainer-owned
+Pokémon.
 
-The system combines a normalized relational database, database-side business logic, example operational queries, and a Java console application for querying data through JDBC.
+The system combines a normalized relational database, database-side business logic, example operational queries, and a
+Java console application for querying data through JDBC.
 
 ## Features
 
-- Normalized MySQL schema for regions, towns, trainers, Pokémon species, types, gyms, badges, wild encounters, and owned Pokémon.
+- Normalized MySQL schema for regions, towns, trainers, Pokémon species, types, gyms, badges, wild encounters, and owned
+  Pokémon.
 - Many-to-many Pokémon type mapping through a junction table.
 - Foreign key constraints for relational integrity.
 - Seed data for the main game-domain entities.
@@ -85,7 +88,8 @@ The database is built around a Pokémon game domain:
 08_users.sql
 ```
 
-The `sql/examples/` folder contains optional demonstration queries. These files are not included in `00_all.sql` because `data_modification_queries.sql` changes and deletes data.
+The `sql/examples/` folder contains optional demonstration queries. These files are not included in `00_all.sql` because
+`data_modification_queries.sql` changes and deletes data.
 
 ## Java Console Application
 
@@ -111,10 +115,12 @@ The application uses:
 Open the MySQL CLI and run the main setup script with an absolute path:
 
 ```sql
-SOURCE /Users/nikitsya/Desktop/Pokemon_Database/sql/00_all.sql;
+SOURCE
+/Users/nikitsya/Desktop/Pokemon_Database/sql/00_all.sql;
 ```
 
-`SOURCE` is a MySQL client command, so it is intended for the MySQL CLI. In database IDEs, run the numbered SQL files manually in order.
+`SOURCE` is a MySQL client command, so it is intended for the MySQL CLI. In database IDEs, run the numbered SQL files
+manually in order.
 
 ### 2. Configure the Java database connection
 
@@ -155,23 +161,23 @@ java -cp "out;lib/mysql-connector-j-9.4.0.jar" Main
 Show trainers and their Pokémon:
 
 ```sql
-SELECT
-    tr.name AS Trainer,
-    tr.gender,
-    tr.age,
-    p.name AS Pokemon,
-    tp.nick_name AS Nickname,
-    tp.pokemon_level AS Level
+SELECT tr.name          AS Trainer,
+       tr.gender,
+       tr.age,
+       p.name           AS Pokemon,
+       tp.nick_name     AS Nickname,
+       tp.pokemon_level AS Level
 FROM TrainerPokemon AS tp
-JOIN Trainer AS tr ON tp.trainer_id = tr.trainer_id
-JOIN Pokemon AS p ON tp.pokemon_id = p.pokemon_id
+         JOIN Trainer AS tr ON tp.trainer_id = tr.trainer_id
+         JOIN Pokemon AS p ON tp.pokemon_id = p.pokemon_id
 ORDER BY tr.name;
 ```
 
 Show calculated trainer Pokémon stats:
 
 ```sql
-SELECT * FROM TrainerPokemonStats;
+SELECT *
+FROM TrainerPokemonStats;
 ```
 
 Trade Pokémon between trainers:
@@ -182,4 +188,5 @@ CALL TradePokemon(1, 1, 8, 4);
 
 ## Project Status
 
-The database schema, SQL setup scripts, seed data, database logic, example queries, and Java query application are implemented and ready to run locally with MySQL.
+The database schema, SQL setup scripts, seed data, database logic, example queries, and Java query application are
+implemented and ready to run locally with MySQL.
