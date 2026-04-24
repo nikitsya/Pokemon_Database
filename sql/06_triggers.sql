@@ -1,5 +1,5 @@
--- Log deleted trainer after delete
--- Keep record of all removed trainers In case the game needs to be restarted
+-- Records deleted trainers in the audit table after a Trainer row is removed.
+-- This keeps a deletion history for recovery, review, and administrative tracking.
 DELIMITER $$
 
 CREATE TRIGGER after_trainer_delete
@@ -13,8 +13,9 @@ END$$
 
 DELIMITER;
 
--- Delete trainer pokemon before trainer
--- Reason: Due to trainer Pokémon relying on Trainer, the trainer can’t be removed. Removing their Pokémon first is necessary.
+
+-- Removes a trainer's owned Pokémon before deleting the trainer.
+-- This prevents foreign key conflicts because TrainerPokemon depends on Trainer.
 DELIMITER $$
 
 CREATE TRIGGER delete_trainer_pokemon
@@ -28,8 +29,9 @@ END $$
 
 DELIMITER;
 
--- Change gym leader if the current leader gets deleted
--- Reason: Due to trainer gym relying on Trainer as its leader, the trainer can’t be removed directly. If deleted trainer was a gym leader, gym leader has to be change first.
+
+  -- Reassigns gyms before deleting a trainer who is currently a gym leader.
+-- This keeps Gym.leader_id valid and prevents broken leader references.
 DELIMITER $$
 
 CREATE TRIGGER change_leader_if_deleted
@@ -38,14 +40,14 @@ FOR EACH ROW
 BEGIN
     DECLARE new_leader INT;
 
-    -- If the deleted player is NOT trainer 4:
+    -- Use trainer 4 as the default replacement leader when available.
     IF OLD.trainer_id <> 4 THEN
-        -- Reassign their gyms to trainer 4
+        -- Reassign the deleted trainer's gyms to the default leader.
         UPDATE Gym
         SET leader_id = 4
         WHERE leader_id = OLD.trainer_id;
-    
-    -- Else select the next available trainer
+
+    -- If trainer 4 is being deleted, select the next available trainer.
     ELSE
         SELECT trainer_id
         INTO new_leader
@@ -54,7 +56,7 @@ BEGIN
         ORDER BY trainer_id
         LIMIT 1;
 
-        -- Update gym leader to the next available leader
+    -- Reassign affected gyms to the selected replacement leader.
         IF new_leader IS NOT NULL THEN
             UPDATE Gym
             SET leader_id = new_leader
@@ -66,20 +68,21 @@ END $$
 
 DELIMITER;
 
--- Automatically adjust pokemon level to stay within valid bounds (between 1 and 100)
--- Reason: To ensure all Pokémon levels inserted into the TrainerPokemon table remain within valid gameplay limits (1–100).
+
+-- Normalizes inserted Pokémon levels to the valid gameplay range of 1 to 100.
+-- Values below 1 are raised to 1, and values above 100 are capped at 100.
 DELIMITER $$
 
 CREATE TRIGGER check_pokemon_level
 BEFORE INSERT ON TrainerPokemon
 FOR EACH ROW
 BEGIN
-  -- If level less than 1, set it to 1
+    -- Raise levels below the minimum allowed value.
   IF NEW.pokemon_level < 1 THEN
     SET NEW.pokemon_level = 1;
   END IF;
 
-  -- If level greater than 100, set it to 100
+-- Cap levels above the maximum allowed value.
   IF NEW.pokemon_level > 100 THEN
     SET NEW.pokemon_level = 100;
   END IF;
@@ -87,15 +90,16 @@ END$$
 
 DELIMITER;
 
--- Cap caught pokemon max IVs
--- Reason: Make sure no pokemons stats were higher than they should be
+
+-- Caps inserted IV values at the maximum allowed value of 31.
+-- This protects stat calculations from invalid overpowered Pokémon data.
 DELIMITER $$
 
 create trigger cap_max_iv
     before insert on TrainerPokemon
     for each row
     begin
-        -- Check if each IV is lower than 31 and change it to 31 otherwise
+        -- Cap each IV independently if it exceeds the allowed maximum.
         if NEW.hit_points_iv > 31 then
             set new.hit_points_iv = 31;
         end if;
@@ -109,8 +113,9 @@ create trigger cap_max_iv
 
 DELIMITER;
 
---Caps trainer to 6 pokemon max
---Reason: Ensures no trainer has more pokemon than they logically should
+
+-- Enforces the maximum party size of 6 Pokémon per trainer.
+-- Inserts beyond this limit are rejected with a database error.
 
 DELIMITER $$
 
