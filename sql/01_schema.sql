@@ -9,8 +9,8 @@ Pokemon;
 CREATE TABLE Region
 (
     region_id INT PRIMARY KEY AUTO_INCREMENT,
-    name    VARCHAR(50) NOT NULL,
-    climate VARCHAR(50) NOT NULL
+    name      VARCHAR(50) NOT NULL,
+    climate   VARCHAR(50) NOT NULL
 );
 
 -- Stores towns and links each town to the region it belongs to.
@@ -27,7 +27,7 @@ CREATE TABLE Town
 -- Stores the available Pokémon type categories, such as Fire, Water, or Electric.
 CREATE TABLE Types
 (
-    type_id INT PRIMARY KEY AUTO_INCREMENT,
+    type_id   INT PRIMARY KEY AUTO_INCREMENT,
     type_name VARCHAR(50) NOT NULL
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE Pokemon
 CREATE TABLE PokemonTypes
 (
     pokemon_id INT NOT NULL,
-    type_id INT NOT NULL,
+    type_id    INT NOT NULL,
     PRIMARY KEY (pokemon_id, type_id),
     FOREIGN KEY (pokemon_id) REFERENCES Pokemon (pokemon_id),
     FOREIGN KEY (type_id) REFERENCES Types (type_id)
@@ -84,7 +84,7 @@ CREATE TABLE TrainerPokemon
 -- Stores gym badges that can be awarded by gyms.
 CREATE TABLE Badge
 (
-    badge_id INT PRIMARY KEY AUTO_INCREMENT,
+    badge_id   INT PRIMARY KEY AUTO_INCREMENT,
     badge_name VARCHAR(50) NOT NULL
 );
 
@@ -92,11 +92,11 @@ CREATE TABLE Badge
 -- Foreign keys keep every gym connected to valid trainer, town, type, and badge records.
 CREATE TABLE Gym
 (
-    gym_id   INT PRIMARY KEY AUTO_INCREMENT,
+    gym_id    INT PRIMARY KEY AUTO_INCREMENT,
     leader_id INT NOT NULL,
-    town_id  INT NOT NULL,
-    type_id  INT NOT NULL,
-    badge_id INT NOT NULL,
+    town_id   INT NOT NULL,
+    type_id   INT NOT NULL,
+    badge_id  INT NOT NULL,
     FOREIGN KEY (leader_id) REFERENCES Trainer (trainer_id),
     FOREIGN KEY (town_id) REFERENCES Town (town_id),
     FOREIGN KEY (type_id) REFERENCES Types (type_id),
@@ -107,8 +107,8 @@ CREATE TABLE Gym
 -- The composite primary key ensures each type matchup is stored only once.
 CREATE TABLE TypeAdvantage
 (
-    type_1 INT NOT NULL,
-    type_2 INT NOT NULL,
+    type_1         INT         NOT NULL,
+    type_2         INT         NOT NULL,
     type_advantage VARCHAR(50) NOT NULL,
     PRIMARY KEY (type_1, type_2),
     FOREIGN KEY (type_1) REFERENCES Types (type_id),
@@ -119,12 +119,12 @@ CREATE TABLE TypeAdvantage
 -- This table keeps catchable Pokémon separate from trainer-owned Pokémon.
 CREATE TABLE WildPokemon
 (
-    wild_id    INT PRIMARY KEY AUTO_INCREMENT,
-    pokemon_id INT NOT NULL,
-    region_id  INT NOT NULL,
+    wild_id              INT PRIMARY KEY AUTO_INCREMENT,
+    pokemon_id           INT         NOT NULL,
+    region_id            INT         NOT NULL,
     location_description VARCHAR(50) NOT NULL,
-    min_level  INT NOT NULL,
-    max_level  INT NOT NULL,
+    min_level            INT         NOT NULL,
+    max_level            INT         NOT NULL,
     FOREIGN KEY (pokemon_id) REFERENCES Pokemon (pokemon_id),
     FOREIGN KEY (region_id) REFERENCES Region (region_id)
 );
