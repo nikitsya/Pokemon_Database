@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Improve index SQL comments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/all.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/table_for_trigger.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/08_users.sql" afterDir="false" />
+    <list default="true" id="cd2b7a3d-4823-4594-b5e7-55a65e440dd7" name="Changes" comment="Move example SQL queries into examples folder">
+      <change beforePath="$PROJECT_DIR$/sql/examples/data_modification_queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/examples/data_modification_queries.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/examples/reporting_queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/examples/reporting_queries.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +88,8 @@
     <MESSAGE value="Update stored procedure Pokémon wording" />
     <MESSAGE value="Improve transaction SQL comments" />
     <MESSAGE value="Improve index SQL comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve index SQL comments" />
+    <MESSAGE value="Add user management SQL comments" />
+    <MESSAGE value="Move example SQL queries into examples folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move example SQL queries into examples folder" />
   </component>
 </project>

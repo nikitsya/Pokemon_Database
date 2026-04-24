@@ -9,7 +9,7 @@ WHERE
     t.type_name = 'Normal';
 
 -- Lists trainers with their owned Pokémon, nicknames, and current levels.
--- Demonstrates a standard ownership query across Trainer, TrainerPokemon, and Pokemon.
+-- Demonstrates a standard ownership query across Trainer, TrainerPokemon, and Pokémon.
 SELECT
     tr.name AS Trainer,
     tr.gender,
@@ -37,7 +37,7 @@ FROM
     JOIN Pokemon AS p on tp.pokemon_id = p.pokemon_id
 order by g.gym_id, tr.name;
 
--- Lists trainers with their home town and region.
+-- Lists trainers with their hometown and region.
 -- LEFT JOINs keep towns visible even if no trainer is assigned to them.
 SELECT
     tr.name AS Trainer,

@@ -1,4 +1,4 @@
--- Data modification examples for the Pokemon database.
+-- Data modification examples for the Pokémon database.
 -- Delete examples depend on the trigger setup because related tables use foreign key constraints.
 
 -- Increases the level of every Pokémon owned by trainer 4 by one.
